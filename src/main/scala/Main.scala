@@ -146,7 +146,7 @@ object Main extends App {
     bmLogFile.flush()
 
     val resultFile = new PrintWriter(new File("bmResults.txt" ))
-    resultFile.println("="*50)
+    resultFile.println("="*80)
     for (bmList <- allBms) {
       resultFile.println(bmList.nameAndCountAsString(50))
     }
@@ -157,13 +157,14 @@ object Main extends App {
       (matchingSafeHeapBms.length + matchingUnsafeBms.length))
     resultFile.println("Total unmatching heap BMs : " +
       (unsoundHeapBms.length + incompleteHeapBms.length))
-    resultFile.println("Total error BMs (excluding arrays) : " +
+    resultFile.println("Total error BMs (excluding arrays and timeouts) : " +
       (parseErrorBms.length + outOfMemoryBms.length +
        otherErrorBms.length + stackOverflowBms.length))
     resultFile.println("Total BMs (any) : " +
       (unsoundBms.length + incompleteBms.length + matchingSafeBms.length +
        matchingUnsafeBms.length + parseErrorBms.length + outOfMemoryBms.length +
-       otherErrorBms.length + stackOverflowBms.length))
+       otherErrorBms.length + stackOverflowBms.length + arrayBms.length +
+       timeoutBms.length))
 
     resultFile.println("="*80)
     resultFile.println("")
